@@ -1,8 +1,9 @@
 import { hash } from 'bcrypt';
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { ICreateUsersDTOs } from '../../dtos/ICreateUserDTOs';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
 
+@injectable()
 export class CreateUserUseCase {
     constructor (
         @inject('UsersRepository')
@@ -18,7 +19,7 @@ export class CreateUserUseCase {
 
         const passwordHash = await hash(password, 8)
 
-        this.userRepository.create({
+        await this.userRepository.create({
             name,
             email,
             password: passwordHash

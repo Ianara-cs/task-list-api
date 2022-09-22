@@ -11,11 +11,11 @@ export class UsersRepository implements IUsersRepository {
     }
 
     async create(data: ICreateUsersDTOs): Promise<void> {
-        const user = await this.prisma.user.create({data})
+        const user = await this.prisma.account.create({ data})
     }
 
-    async findByEmail(email: string): Promise<User> {
-        const user = await this.prisma.user.findUniqueOrThrow({where: {email}})
+    async findByEmail(email: string): Promise<User | null> {
+        const user = await this.prisma.account.findUnique({where: {email}})
         return user
     }
 
