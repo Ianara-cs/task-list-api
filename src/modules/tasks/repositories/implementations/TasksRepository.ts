@@ -18,20 +18,41 @@ export class TasksRepository implements ITasksRepository {
     }
 
     async findById(id: string): Promise<Task> {
-        const task = await this.prisma.task.findFirstOrThrow({where: {
+        const task = await this.prisma.task.findUniqueOrThrow({where: {
             id
         }})
 
         return task
     }
 
-    async update({id, title, description}: IUpdateTaskDTO): Promise<Task> {
+    async findAll(userId: string): Promise<Task[]> {
+        const tasks = await this.prisma.task.findMany({
+            where: {
+                accountId: userId
+            }
+        })
+
+        return tasks
+    }
+
+    async update({taskId, title, description}: IUpdateTaskDTO): Promise<Task> {
         const task = await this.prisma.task.update({where: {
-            id
+            id: taskId
         }, 
         data: {
             title, 
             description
+        }})
+
+        return task
+    }
+
+    async updateSatus(id: string, status: Status): Promise<Task> {
+        const task = await this.prisma.task.update({where: {
+            id
+        }, 
+        data: {
+            status: status
         }})
 
         return task

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { AuthenticationUseCase } from "./authenticationUseCase";
 
-class AutheticationController {
+export class AutheticationController {
     async handle(req: Request, res: Response) {
         const {email, password} = req.body
 
@@ -14,4 +14,3 @@ class AutheticationController {
     }
 }
 
-export { AutheticationController };

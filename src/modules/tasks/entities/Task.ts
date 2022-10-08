@@ -5,6 +5,8 @@ export class Task {
 
     description!: string
 
+    accountId?: string
+
     createdAt!: Date
 
     updatedAt!: Date
