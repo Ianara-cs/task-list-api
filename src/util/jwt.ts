@@ -8,3 +8,7 @@ export function generateToken(user: User) {
     });
 }
 
+export function verifyToken(token: string) {
+  return jwt.verify(token, auth.jwt_access_secret)
+}
+
