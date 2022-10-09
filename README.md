@@ -1,7 +1,7 @@
 # TASK LIST - REST API 
 
-> Projeto em andamento
-> Documentação em andamento
+- Projeto em andamento
+- Documentação em andamento
 
 ## Descrição
 
