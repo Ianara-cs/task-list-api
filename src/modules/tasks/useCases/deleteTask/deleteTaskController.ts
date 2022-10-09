@@ -4,7 +4,7 @@ import { DeleteTaskUseCase } from "./deleteTaskUseCase";
 
 export class DeleteTaskController {
     async handle(req: Request, res: Response) {
-        const {taskId} = req.body
+        const {taskId} = req.params
         const {id} = req.user
 
         const deleteTaskUseCase = container.resolve(DeleteTaskUseCase)
