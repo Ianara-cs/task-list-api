@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../errors/AppError";
 import { IUpdateTaskDTO } from "../../dtos/IUpdateTaskDTO";
 import { ITasksRepository } from "../../repositories/ITasksRepository";
 
@@ -13,11 +14,11 @@ export class UpdateTaskUseCase {
         const task = await this.tasksRepository.findById(taskId)
 
         if(!task) {
-            throw new Error("Tarefa não encontrada")
+            throw new AppError("Tarefa não encontrada")
         }
 
         if(task.accountId != userId) {
-            throw new Error('Ação impossível')
+            throw new AppError('Ação impossível')
         }
 
         if(!title) {

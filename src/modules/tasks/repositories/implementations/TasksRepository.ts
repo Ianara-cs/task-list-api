@@ -47,7 +47,7 @@ export class TasksRepository implements ITasksRepository {
         return task
     }
 
-    async updateSatus(id: string, status: Status): Promise<Task> {
+    async updateStatus(id: string, status: Status): Promise<Task> {
         const task = await this.prisma.task.update({where: {
             id
         }, 

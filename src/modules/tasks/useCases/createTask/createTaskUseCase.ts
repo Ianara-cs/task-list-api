@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../errors/AppError";
 import { UsersRepository } from "../../../accounts/repositories/implementations/UsersRepository";
 import { ICreateTaskDTO } from "../../dtos/ICreateTaskDTO";
 import { ITasksRepository } from "../../repositories/ITasksRepository";
@@ -16,7 +17,7 @@ export class CreateTaskUseCase {
         const user = await userRepository.findById(userId)
         
         if(!user) {
-            throw new Error("Usuario não encontra")
+            throw new AppError("Usuario não encontra")
         }
         
         await this.tasksRepository.create({title, description, userId: user.id as string})

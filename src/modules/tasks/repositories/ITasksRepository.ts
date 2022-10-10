@@ -9,5 +9,5 @@ export interface ITasksRepository {
     update(data: IUpdateTaskDTO): Promise<Task>
     remove(id: string): Promise<Task>
     findAll(userId: string): Promise<Task[]>
-    updateSatus(id: string, status: Status): Promise<Task>
+    updateStatus(id: string, status: Status): Promise<Task>
 }

@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { AppError } from "../errors/AppError";
 import { UsersRepository } from "../modules/accounts/repositories/implementations/UsersRepository";
 import { verifyToken } from "../util/jwt";
 
@@ -11,7 +12,7 @@ export async function ensureAutheticated(req: Request, res: Response, next: Next
     const authHeader = req.headers.authorization
 
     if(!authHeader) {
-        throw new Error("Token missing")
+        throw new AppError("Token missing", 401)
     }
 
     const [, token] = authHeader.split(' ')
@@ -23,7 +24,7 @@ export async function ensureAutheticated(req: Request, res: Response, next: Next
         const user = usersRepository.findById(userId)
 
         if(!user) {
-            throw new Error("User does not exists!")
+            throw new AppError("User does not exists!", 401)
         }
 
 
@@ -33,7 +34,7 @@ export async function ensureAutheticated(req: Request, res: Response, next: Next
         
         next()
     } catch (error) {
-        throw new Error("Invalid token!")
+        throw new AppError("Invalid token!",401)
     }
 
 }
