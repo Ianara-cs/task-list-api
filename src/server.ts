@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import 'reflect-metadata';
+import { PORT } from './config/config';
 import { AppError } from './errors/AppError';
 import { routes } from './routes';
 import './shared/container';
@@ -28,7 +29,6 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
     })
 })
 
-const port = 3000
-app.listen(port, () => {
+app.listen(PORT, () => {
     console.log("Servidor rodando!🛸")
 })
