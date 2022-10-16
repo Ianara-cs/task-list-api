@@ -6,7 +6,7 @@
   "author": "Ianara-cs <ianarasilva333@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node src/server.ts",
+    "start": "node build/server.js",
     "dev": "ts-node-dev --inspect --transpile-only --exit-child --ignore-watch node_modules --respawn src/server.ts"
   },
   "dependencies": {
